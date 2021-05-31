@@ -25,7 +25,7 @@ pipeline{
 
         stage('publish to nexus'){
             steps{
-                nexusArtifactUploader artifacts: [[artifactId: 'sushmaDevOpsLab', classifier: 'war', file: 'target/sushmaDevopsLab-0.0.11-SNAPSHOT.war', type: 'war']], credentialsId: '', groupId: 'com.sushmadevopslab', nexusUrl: '172.20.10.143:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'sushmadevopslab_SNAPSHOT', version: '0.0.11'
+                nexusArtifactUploader artifacts: [[artifactId: 'sushmadevOpslab', classifier: 'war', file: 'target/sushmadevopslab-0.0.11-SNAPSHOT.war', type: 'war']], credentialsId: '', groupId: 'com.sushmadevopslab', nexusUrl: '172.20.10.143:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'sushmadevopslab_SNAPSHOT', version: '0.0.11'
             }
         }
 
