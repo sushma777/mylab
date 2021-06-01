@@ -32,12 +32,12 @@ pipeline{
         stage('Publish to Nexus'){
             steps{
 
-                script{
+             script{
                     def NexusRepo = Version.endsWith("SNAPSHOT") ? "sushmadevopslab_SNAPSHOT" : "sushmadevopslab_RELEASE"
                 }
                 nexusArtifactUploader artifacts: [[artifactId:"${ArtifactId}", 
                 classifier: '',
-                 file: 'target/sushmadevopslab-0.0.12.war', 
+                 file: "target/${ArtifactId}-${Version}.war", 
                  type: 'war']], 
                  credentialsId: '88a74e93-4a0b-4d8d-9755-67e1304b3c8b', 
                  groupId: "${GroupId}", 
