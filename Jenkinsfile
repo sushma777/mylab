@@ -29,13 +29,11 @@ pipeline{
             }
         }
 
-        stage('Publish to Nexus'){
-            steps{
-
-             script{
-                    
-                    def NexusRepo = Version.endsWith("SNAPSHOT") ? "sushmadevopslab_SNAPSHOT" : "sushmadevopslab_RELEASE"
-                }
+stage('Publish to Nexus'){
+            steps
+            {
+script{
+ def NexusRepo = Version.endsWith("SNAPSHOT") ? "sushmadevopslab_SNAPSHOT" : "sushmadevopslab_RELEASE"
                 nexusArtifactUploader artifacts: [[artifactId:"${ArtifactId}", 
                 classifier: '',
                  file: "target/${ArtifactId}-${Version}.war", 
@@ -47,6 +45,7 @@ pipeline{
                  protocol: 'http', 
                  repository: "${NexusRepo}", 
                  version: "${Version}"
+            }
             }
         }
 
