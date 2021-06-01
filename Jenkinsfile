@@ -51,7 +51,7 @@ stage('print environment variables')
 {
 steps{
     echo "the artifact is '${ArtifactId}'"
-    echo "the version is '${ Version}'"
+    echo "the version is '${Version}'"
     echo "the group is '{}'"
     echo "the name is '${Name}'"
 }
