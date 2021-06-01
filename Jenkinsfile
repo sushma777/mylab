@@ -56,7 +56,7 @@ steps{
 }
 
 
-           stage('deploy'){
+stage('deploy'){
         steps{
         echo 'deploying;.......'
         }
@@ -64,4 +64,5 @@ steps{
         
     }
 
+}
 }
