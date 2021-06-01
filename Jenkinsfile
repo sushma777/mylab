@@ -37,14 +37,14 @@ pipeline{
                 }
                 nexusArtifactUploader artifacts: [[artifactId:"${ArtifactId}", 
                 classifier: '',
-                 file: 'target/sushmadevopslab-0.0.12-SNAPSHOT.war', 
+                 file: 'target/sushmadevopslab-0.0.12.war', 
                  type: 'war']], 
                  credentialsId: '88a74e93-4a0b-4d8d-9755-67e1304b3c8b', 
                  groupId: "${GroupId}", 
                  nexusUrl: '172.20.10.143:8081', 
                  nexusVersion: 'nexus3', 
                  protocol: 'http', 
-                 repository: 'sushmadevopslab_SNAPSHOT', 
+                 repository: "${NexusRepo}", 
                  version: "${Version}"
             }
         }
