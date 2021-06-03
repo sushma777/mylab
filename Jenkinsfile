@@ -71,14 +71,19 @@ steps{
 }
 }
 
+stage('deploy')
+{
+steps
+{
 
-stage('deploy'){
-        steps{
-        echo 'deploying;.......'
-        }
-        
-        
-    }
+sshagent(['jenkins']) {
 
+ sh "scp  -o StrictHostKeyChecking=no cd /target/sushmadevopslab-0.0.12.war  ec2.user@3.17.11.189:/opt/apache-tomcat-9.0.40/webapps"
+    
 }
+}
+}
+    
+
+    }
 }
