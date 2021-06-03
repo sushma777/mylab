@@ -70,17 +70,14 @@ steps{
     echo "the name is '${Name}'"
 }
 }
+ stage ('deploy'){
 
-stage('deploy')
-{
-steps
-{
-echo ("deployiong")
+     steps{
+     
+     echo ("deploying")
+     }
 
-}
-}
-}
-    
-
+ }
+ 
     }
 }
