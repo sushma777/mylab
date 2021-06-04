@@ -8,7 +8,8 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Vinay's DevOps Labs</title>
+    <title>
+        <Sushma DevOps Labs</title>
 
 
     <!-- Custom styles for this template -->
