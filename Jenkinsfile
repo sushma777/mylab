@@ -87,9 +87,9 @@ sshPublisher(publishers:
     usePromotionTimestamp: false, 
     useWorkspaceInPromotion: false, 
     verbose: false}])
-     }
+     }}
 
- }
- 
-    }
 }
+ 
+    
+
