@@ -74,20 +74,19 @@ steps{
 
      steps{
      
-     echo ("deploying")
+echo ("deploying")
 sshPublisher(publishers:
  [sshPublisherDesc(configName: 'Ansible _controller',
   transfers:[
       sshTransfer{
-          cleanRemote: false,
+          cleanRemote:false,
           execCommand: 'ansible-playbook /opt/playbooks/deploy.yml -i /opt/playbooks/hosts'
           execTimeout: 120000
       }
   ],
     usePromotionTimestamp: false, 
     useWorkspaceInPromotion: false, 
-    verbose: false)])
-
+    verbose: false}])
      }
 
  }
