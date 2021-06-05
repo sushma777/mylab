@@ -70,25 +70,27 @@ steps{
     echo "the name is '${Name}'"
 }
 }
- stage ('deploy'){
-
-     steps{
-     
-echo ("deploying")
+ stage ('deploy')
+ {
+steps
+{
+echo ("deploying to tomcat")
 sshPublisher(publishers:
  [sshPublisherDesc(configName: 'Ansible _controller',
   transfers:[
-      sshTransfer{
+      sshTransfer(
           cleanRemote:false,
           execCommand: 'ansible-playbook /opt/playbooks/deploy.yml -i /opt/playbooks/hosts'
           execTimeout: 120000
-      }
+      )
   ],
     usePromotionTimestamp: false, 
     useWorkspaceInPromotion: false, 
-    verbose: false}])
+    verbose: false)
+ ])
      }}
 
+}
 }
  
     
