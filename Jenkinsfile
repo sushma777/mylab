@@ -43,8 +43,7 @@ pipeline{
     
         }
 
-
-//stage3 :nexus publishing
+//stage4 :nexus publishing
 stage('Publish to Nexus'){
             steps
             {
@@ -65,7 +64,7 @@ script{
             }
         }
 
-        //stage 4 printing environment variables
+        //stage 5 printing environment variables
 stage('print environment variables')
 {
 steps{
@@ -95,7 +94,7 @@ sshPublisher(publishers:
     verbose: false)
  ])
      }}
-//stage 6 deploying the build artifact to docker container
+//stage 7 deploying the build artifact to docker container
 Stage ('deploy to docker')
  {
 steps
@@ -115,6 +114,8 @@ sshPublisher(publishers:
     verbose: false)
  ])
 }
+}
+   }
 }
  
     
