@@ -81,7 +81,7 @@ steps
 {
 echo ("deploying to tomcat")
 sshPublisher(publishers:
- [sshPublisherDesc(configName: 'Ansible _controller',
+ [sshPublisherDesc(configName: 'Ansible_controller',
   transfers:[
       sshTransfer(
           cleanRemote:false,
@@ -101,7 +101,7 @@ steps
 {
 echo ("deploying to docker")
 sshPublisher(publishers:
- [sshPublisherDesc(configName: 'Ansible _controller',
+ [sshPublisherDesc(configName: 'Ansible_controller',
   transfers:[
       sshTransfer(
           cleanRemote:false,
