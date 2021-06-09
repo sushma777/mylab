@@ -4,7 +4,7 @@
   <groupId>com.sushmadevopslab</groupId>
   <artifactId>sushmadevopslab</artifactId>
   <packaging>war</packaging>
-  <version>0.0.17</version>
+  <version>0.0.18version>
   <name>sushmadevopslab</name>
   <url>http://maven.apache.org</url>
   <dependencies>

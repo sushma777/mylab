@@ -11,7 +11,8 @@ pipeline{
         Name=readMavenPom().getName()
         GroupId=readMavenPom().getGroupId()
     }
-    stages {
+
+   stages {
         // Specify various stage with in stages
 
         // stage 1. Build
@@ -29,6 +30,21 @@ pipeline{
             }
         }
 
+        // Stage3 : Publish the source code to Sonarqube static code amnalysis
+        stage ('Sonarqube Analysis'){
+           steps {
+               echo ' Source code published to Sonarqube for SCA......'
+               withSonarQubeEnv('sonarqube'){ // You can override the credential to be used
+                     sh 'mvn sonar:sonar'
+               }
+
+            }
+
+    
+        }
+
+
+//stage3 :nexus publishing
 stage('Publish to Nexus'){
             steps
             {
@@ -49,18 +65,7 @@ script{
             }
         }
 
-        // Stage3 : Publish the source code to Sonarqube
-       // stage ('Sonarqube Analysis'){
-         //   steps {
-           //     echo ' Source code published to Sonarqube for SCA......'
-            //    withSonarQubeEnv('sonarqube'){ // You can override the credential to be used
-             //        sh 'mvn sonar:sonar'
-               // }
-
-           // }
-
-    
-        //}
+        //stage 4 printing environment variables
 stage('print environment variables')
 {
 steps{
@@ -70,6 +75,7 @@ steps{
     echo "the name is '${Name}'"
 }
 }
+//stage 5 deploying to tomcat
  stage ('deploy')
  {
 steps
@@ -80,8 +86,8 @@ sshPublisher(publishers:
   transfers:[
       sshTransfer(
           cleanRemote:false,
-          execCommand: 'ansible-playbook /opt/playbooks/deploy.yml -i /opt/playbooks/hosts',
-          execTimeout: 120000
+          execCommand:  'ansible-playbook /opt/playbooks/deploy.yml -i /opt/playbooks/hosts',
+          execTimeout: 12000000
       )
   ],
     usePromotionTimestamp: false, 
@@ -89,7 +95,25 @@ sshPublisher(publishers:
     verbose: false)
  ])
      }}
-
+//stage 6 deploying the build artifact to docker container
+Stage ('deploy to docker')
+ {
+steps
+{
+echo ("deploying to docker")
+sshPublisher(publishers:
+ [sshPublisherDesc(configName: 'Ansible _controller',
+  transfers:[
+      sshTransfer(
+          cleanRemote:false,
+          execCommand:  'ansible-playbook /opt/playbooks/dockerdeploy.yml -i /opt/playbooks/hosts',
+          execTimeout: 12000000
+      )
+  ],
+    usePromotionTimestamp: false, 
+    useWorkspaceInPromotion: false, 
+    verbose: false)
+ ])
 }
 }
  

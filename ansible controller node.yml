@@ -1,0 +1,27 @@
+---
+- name: This play is to download the latest war file from nexus
+  hosts : localhost
+  become: true
+  vars_files:
+    - /opt/playbooks/variables.yml
+  tasks:
+     - name: download the war file
+       shell: 'curl -u admin:admin -L "http://172.20.10.143:8081/service/rest/v1/search/assets/download?sort=version&repository=sushmadevopslab_RELEASE&maven.groupId=com.sushmadevopslab&maven.artifactId=sushmadevopslab&maven.extension=war" -H "accept: application/json" --output /home/ansibleadmin/latest.war'
+       args :
+               chdir: "{{ changedir_location }}"
+
+- name : this play is to download the war to  apache tomcat
+  hosts : tomcat
+  become : true
+  vars_files :
+    - /opt/playbooks/variables.yml
+  tasks :
+   - copy :
+      src: "{{ item }}"
+      dest: "{{ destination_location }}"
+      owner: tomcat
+      group: tomcat
+      mode: u+rwx,g+rwx,o-rwx
+     with_fileglob:
+             - "{{ buildartifact_location }}"
+...
