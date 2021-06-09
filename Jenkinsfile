@@ -75,7 +75,7 @@ steps{
 }
 }
 //stage 5 deploying to tomcat
- stage ('deploy')
+ stage ('deploy to tomcat')
  {
 steps
 {
@@ -95,7 +95,7 @@ sshPublisher(publishers:
  ])
      }}
 //stage 7 deploying the build artifact to docker container
-Stage ('deploy to docker')
+stage ('deploy to docker')
  {
 steps
 {
